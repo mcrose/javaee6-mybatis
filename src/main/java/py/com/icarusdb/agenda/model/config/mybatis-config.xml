@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+<!--     <properties resource="py/com/icarusdb/agenda/model/config.properties" /> -->
+    
+    <environments default="development">
+    
+        <environment id="development">
+<!--             <transactionManager type="JDBC" /> -->
+<!--             <dataSource type="POOLED"> -->
+<!--                 <property name="driver" value="${driver}" /> -->
+<!--                 <property name="url" value="${url}" /> -->
+<!--                 <property name="username" value="${username}" /> -->
+<!--                 <property name="password" value="${password}" /> -->
+<!--             </dataSource> -->
+            <transactionManager type="MANAGED" />
+            <dataSource type="JNDI">  
+                <property name="data_source" 
+                         value="java:jboss/datasources/agendaDS"/>  
+            </dataSource>
+        </environment>
+        
+    </environments>
+    
+    
+    <mappers>
+<!--         <mapper resource="org/mybatis/example/BlogMapper.xml" /> -->
+        <mapper resource="py/com/icarusdb/agenda/model/sqlmap/AuditoriaMapper.xml" />
+        <mapper resource="py/com/icarusdb/agenda/model/sqlmap/CargoMapper.xml" />
+        <mapper resource="py/com/icarusdb/agenda/model/sqlmap/DependenciaMapper.xml" />
+        <mapper resource="py/com/icarusdb/agenda/model/sqlmap/EmpleadoMapper.xml" />
+    </mappers>
+    
+    
+    
+</configuration>

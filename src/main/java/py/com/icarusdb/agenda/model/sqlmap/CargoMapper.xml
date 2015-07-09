@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="py.com.icarusdb.agenda.model.client.CargoMapper">
+
+    <resultMap id="BaseResultMap" type="py.com.icarusdb.agenda.model.Cargo">
+        <!-- WARNING - @mbggenerated This element is automatically generated 
+            by MyBatis Generator, do not modify. This element was generated on Tue Sep 
+            10 14:19:39 PYT 2013. -->
+        <id column="id" property="id" jdbcType="BIGINT" />
+        <result column="activo" property="activo" jdbcType="BIT" />
+        <result column="descripcion" property="descripcion"
+            jdbcType="VARCHAR" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        <!-- WARNING - @mbggenerated This element is automatically generated 
+            by MyBatis Generator, do not modify. This element was generated on Tue Sep 
+            10 14:19:39 PYT 2013. -->
+        id, activo, descripcion
+    </sql>
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap"
+        parameterType="java.lang.Long">
+        <!-- WARNING - @mbggenerated This element is automatically generated 
+            by MyBatis Generator, do not modify. This element was generated on Tue Sep 
+            10 14:19:39 PYT 2013. -->
+        select 'false' as QUERYID,
+        <include refid="Base_Column_List" />
+        from cargo
+        where id = #{id,jdbcType=BIGINT}
+    </select>
+    
+    <select id="selectAllActive" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+          from cargo
+         where activo = true
+    </select>
+    
+    <select id="selectAllOrderedByName" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+          from cargo
+         order by descripcion
+    </select>
+    
+    
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        <!-- WARNING - @mbggenerated This element is automatically generated 
+            by MyBatis Generator, do not modify. This element was generated on Tue Sep 
+            10 14:19:39 PYT 2013. -->
+        delete from cargo
+        where id = #{id,jdbcType=BIGINT}
+    </delete>
+    
+    <insert id="insert" parameterType="py.com.icarusdb.agenda.model.Cargo" >
+        <!-- WARNING - @mbggenerated This element is automatically generated 
+            by MyBatis Generator, do not modify. This element was generated on Tue Sep 
+            10 14:19:39 PYT 2013. -->
+            
+        <selectKey keyProperty="id" resultType="Long" order="BEFORE">
+            select CAST(RANDOM()*1000000 as BIGINT)
+        </selectKey>
+
+        insert into cargo (id,activo, descripcion )
+        values (
+            #{id,jdbcType=BIGINT}, #{activo,jdbcType=BIT}, #{descripcion,jdbcType=VARCHAR}
+        )
+    </insert>
+    
+    <insert id="insertSelective" parameterType="py.com.icarusdb.agenda.model.Cargo"
+            useGeneratedKeys="true" keyProperty="id" >
+    
+        <!-- WARNING - @mbggenerated This element is automatically generated 
+            by MyBatis Generator, do not modify. This element was generated on Tue Sep 
+            10 14:19:39 PYT 2013. -->
+        insert into cargo
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="activo != null">
+                activo,
+            </if>
+            <if test="descripcion != null">
+                descripcion,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="activo != null">
+                #{activo,jdbcType=BIT},
+            </if>
+            <if test="descripcion != null">
+                #{descripcion,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    
+    <update id="updateByPrimaryKeySelective" parameterType="py.com.icarusdb.agenda.model.Cargo">
+        <!-- WARNING - @mbggenerated This element is automatically generated 
+            by MyBatis Generator, do not modify. This element was generated on Tue Sep 
+            10 14:19:39 PYT 2013. -->
+        update cargo
+        <set>
+            <if test="activo != null">
+                activo = #{activo,jdbcType=BIT},
+            </if>
+            <if test="descripcion != null">
+                descripcion = #{descripcion,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="py.com.icarusdb.agenda.model.Cargo">
+        <!-- WARNING - @mbggenerated This element is automatically generated 
+            by MyBatis Generator, do not modify. This element was generated on Tue Sep 
+            10 14:19:39 PYT 2013. -->
+        update cargo
+        set activo = #{activo,jdbcType=BIT},
+        descripcion = #{descripcion,jdbcType=VARCHAR}
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+</mapper>

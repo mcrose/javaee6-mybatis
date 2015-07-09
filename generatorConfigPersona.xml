@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
+
+<generatorConfiguration>
+
+    <context id="agendaCtx" targetRuntime="MyBatis3">
+        
+        <jdbcConnection driverClass="org.postgresql.Driver"
+                      connectionURL="jdbc:postgresql://localhost:5432/agenda" 
+                             userId="postgres" password="postgres" />
+        
+        <javaModelGenerator targetPackage="py.com.icarusdb.agenda.model.sgpti"
+                            targetProject="agenda" />
+        
+        <sqlMapGenerator targetPackage="py.com.icarusdb.agenda.model.sgpti.sqlmap"
+                         targetProject="agenda">
+            <property name="enableSubPackages" value="true" />
+        </sqlMapGenerator>         
+        
+        <javaClientGenerator targetPackage="py.com.icarusdb.agenda.model.sgpti.client"
+                             targetProject="agenda" type="XMLMAPPER" > 
+            <property name="enableSubPackages" value="true" />  
+        </javaClientGenerator>
+        
+        <table tableName="auditoria" enableCountByExample="false"
+            enableDeleteByExample="false" enableUpdateByExample="false"
+            selectByPrimaryKeyQueryId="false" selectByExampleQueryId="false"
+            enableSelectByExample="false" modelType="flat" />
+        
+        <table tableName="cargo" enableCountByExample="false"
+            enableDeleteByExample="false" enableUpdateByExample="false"
+            selectByPrimaryKeyQueryId="false" selectByExampleQueryId="false"
+            enableSelectByExample="false" modelType="flat"/>
+
+        <table tableName="dependencia" enableCountByExample="false"
+            enableDeleteByExample="false" enableUpdateByExample="false"
+            selectByPrimaryKeyQueryId="false" selectByExampleQueryId="false"
+            enableSelectByExample="false" modelType="flat"/>
+        
+        <table tableName="empleado" enableCountByExample="false"
+            enableDeleteByExample="false" enableUpdateByExample="false"
+            selectByPrimaryKeyQueryId="false" selectByExampleQueryId="false"
+            enableSelectByExample="false" modelType="flat"/>
+        
+        <!--table tableName="%" enableCountByExample="false"
+            enableDeleteByExample="false" enableUpdateByExample="false"
+            selectByPrimaryKeyQueryId="false" selectByExampleQueryId="false"
+            enableSelectByExample="false" modelType="flat">
+            <property name="useActualColumnNames" value="true" />
+        </table-->
+                
+    </context>
+    
+</generatorConfiguration>
